@@ -13,4 +13,4 @@ COPY . .
 
 ENV PORT 8080
 
-CMD ["gunicorn", "sistema.wsgi:application", "--bind", "0.0.0.0:8080"]
+CMD exec gunicorn sistema.wsgi:application --bind 0.0.0.0:$PORT
