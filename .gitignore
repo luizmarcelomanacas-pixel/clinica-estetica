@@ -11,16 +11,15 @@ venv/
 # Django
 db.sqlite3
 *.log
-staticfiles/
 media/
 
-# VS Code / IDEs
+# Static collected
+staticfiles/
+
+# IDE / OS
 .vscode/
 .idea/
-
-# Sistema
 .DS_Store
-Thumbs.db
 
 # Env
 .env
