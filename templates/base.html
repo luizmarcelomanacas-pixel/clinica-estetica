@@ -1,0 +1,184 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <button class="menu-toggle d-md-none" onclick="toggleMenu()">
+    ☰
+</button>
+
+    <span class="fw-semibold">
+    Sistema de Gestão — Estética Avançada
+</span>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- CSS próprio -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+    <style>
+        body {
+            margin: 0;
+            background-color: #f3f4f6;
+        }
+
+        .layout {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* SIDEBAR */
+        .sidebar {
+            width: 250px;
+            background: #111827;
+            color: #fff;
+            padding: 20px;
+        }
+
+        .sidebar h3 {
+            font-size: 20px;
+            margin-bottom: 25px;
+        }
+
+        .sidebar-title {
+            font-size: 12px;
+            text-transform: uppercase;
+            color: #9ca3af;
+            margin: 20px 0 8px;
+        }
+
+        .sidebar-link {
+            display: block;
+            padding: 10px 12px;
+            color: #e5e7eb;
+            text-decoration: none;
+            border-radius: 6px;
+            margin-bottom: 5px;
+            font-size: 14px;
+        }
+
+        .sidebar-link:hover {
+            background: #2563eb;
+            color: #fff;
+        }
+
+        .sidebar-link.active {
+            background: #1d4ed8;
+            font-weight: bold;
+        }
+
+        /* CONTEÚDO */
+        .content {
+            flex: 1;
+            padding: 25px;
+        }
+
+        .top-bar {
+            background: #ffffff;
+            padding: 15px 25px;
+            border-bottom: 1px solid #e5e7eb;
+            margin: -25px -25px 25px -25px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="layout">
+
+    <!-- MENU LATERAL -->
+    <aside class="sidebar">
+        <div class="sidebar-header text-center py-3">
+    <h5 class="mb-0 fw-bold text-white">
+        Barbara Castro
+    </h5>
+    <small class="text-light">
+        Estética Avançada
+    </small>
+</div>
+
+
+        <div class="sidebar-title">📊 Operacional</div>
+
+        <a href="{% url 'dashboard' %}"
+           class="sidebar-link {% if request.path == '/' %}active{% endif %}">
+            🏠 Dashboard
+        </a>
+
+        <a href="{% url 'agenda' %}"
+           class="sidebar-link {% if '/agenda' in request.path %}active{% endif %}">
+            📅 Agenda
+        </a>
+
+        <a href="{% url 'lista_clientes' %}"
+           class="sidebar-link {% if '/clientes' in request.path %}active{% endif %}">
+            👤 Clientes
+        </a>
+
+        <a href="{% url 'lista_procedimentos' %}"
+           class="sidebar-link {% if '/procedimentos' in request.path %}active{% endif %}">
+            🧴 Procedimentos
+        </a>
+
+        <hr style="border-color:#374151">
+
+        <div class="sidebar-title">💰 Financeiro</div>
+
+        <a href="{% url 'lista_pagamentos' %}"
+           class="sidebar-link {% if request.path == '/financeiro/' %}active{% endif %}">
+            💵 Financeiro
+        </a>
+
+        <a href="{% url 'agendamentos_pendentes' %}"
+           class="sidebar-link {% if '/financeiro/pendentes' in request.path %}active{% endif %}">
+            🧾 Pagamentos Pendentes
+        </a>
+
+        <hr style="border-color:#374151">
+
+        <div class="sidebar-title">📈 Relatórios</div>
+
+        <a href="{% url 'relatorio_diario' %}"
+           class="sidebar-link {% if '/financeiro/relatorio/diario' in request.path %}active{% endif %}">
+            📊 Relatório Diário
+        </a>
+
+        <a href="{% url 'relatorio_mensal' %}"
+           class="sidebar-link {% if '/financeiro/relatorio/mensal' in request.path %}active{% endif %}">
+            📈 Relatório Mensal
+        </a>
+
+        <hr style="border-color:#374151">
+
+        <div class="sidebar-title">⚙️ Sistema</div>
+
+        <a href="/admin/" class="sidebar-link">
+            ⚙️ Admin
+        </a>
+    </aside>
+
+    <!-- CONTEÚDO -->
+    <main class="content">
+
+        <div class="top-bar">
+            <strong>Sistema de Gestão da Clínica de Estética</strong>
+        </div>
+
+        {% block content %}
+        {% endblock %}
+
+    </main>
+
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+function toggleMenu() {
+    document.querySelector('.sidebar').classList.toggle('open');
+}
+</script>
+
+</body>
+</html>

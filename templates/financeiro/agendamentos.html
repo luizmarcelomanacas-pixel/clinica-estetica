@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Agendamentos para Pagamento</h2>
+
+<table class="table table-striped mt-3">
+    <thead>
+        <tr>
+            <th>Cliente</th>
+            <th>Procedimento</th>
+            <th>Valor</th>
+            <th>Ação</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for ag in agendamentos %}
+        <tr>
+            <td>{{ ag.cliente.nome }}</td>
+            <td>{{ ag.procedimento.nome }}</td>
+            <td>R$ {{ ag.procedimento.preco }}</td>
+            <td>
+                <a href="{% url 'marcar_como_pago' ag.id %}"
+                   class="btn btn-success btn-sm">
+                   Marcar como Pago
+                </a>
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="4">Nenhum agendamento pendente</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

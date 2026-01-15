@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Excluir Procedimento</h2>
+
+<p>Deseja excluir o procedimento:</p>
+<strong>{{ procedimento.nome }}</strong>
+
+<form method="post">
+    {% csrf_token %}
+    <button class="btn btn-danger">Excluir</button>
+    <a href="/procedimentos/" class="btn btn-secondary">Cancelar</a>
+</form>
+{% endblock %}

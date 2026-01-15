@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Relatório Diário</h2>
+<p>Data: {{ data }}</p>
+
+<!-- BOTÕES DE EXPORTAÇÃO -->
+<a href="{% url 'exportar_relatorio_diario_excel' %}" class="btn btn-success mb-2">
+    📥 Exportar Excel
+</a>
+
+<h4>Total do dia: R$ {{ total }}</h4>
+
+<table class="table table-striped mt-3">
+    <thead>
+        <tr>
+            <th>Cliente</th>
+            <th>Procedimento</th>
+            <th>Valor</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for p in pagamentos %}
+        <tr>
+            <td>{{ p.agendamento.cliente.nome }}</td>
+            <td>{{ p.agendamento.procedimento.nome }}</td>
+            <td>R$ {{ p.valor }}</td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="3">Nenhum pagamento hoje</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

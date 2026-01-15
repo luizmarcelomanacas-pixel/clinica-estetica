@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Financeiro</h2>
+
+<h5 class="mt-3">Total Pago: R$ {{ total_pago }}</h5>
+
+<table class="table table-striped mt-3">
+    <thead>
+        <tr>
+            <th>Cliente</th>
+            <th>Procedimento</th>
+            <th>Valor</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for p in pagamentos %}
+        <tr>
+            <td>{{ p.agendamento.cliente.nome }}</td>
+            <td>{{ p.agendamento.procedimento.nome }}</td>
+            <td>R$ {{ p.valor }}</td>
+            <td>{{ p.status }}</td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="4">Nenhum pagamento registrado</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Procedimentos</h2>
+
+<a href="/procedimentos/novo/" class="btn btn-primary mb-3">
+    Novo Procedimento
+</a>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Nome</th>
+            <th>Preço</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for p in procedimentos %}
+        <tr>
+            <td>{{ p.nome }}</td>
+            <td>R$ {{ p.preco }}</td>
+            <td>
+                <a href="/procedimentos/editar/{{ p.id }}/" class="btn btn-sm btn-warning">
+                    Editar
+                </a>
+                <a href="/procedimentos/excluir/{{ p.id }}/" class="btn btn-sm btn-danger">
+                    Excluir
+                </a>
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="3">Nenhum procedimento cadastrado</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
