@@ -9,7 +9,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # =========================
 # SEGURANÇA
 # =========================
-SECRET_KEY = 'django-insecure-troque-essa-chave-em-producao'
+import os
+
+SECRET_KEY = os.environ.get(
+    "SECRET_KEY",
+    "unsafe-secret-key-for-cloud-run"
+)
 
 DEBUG = False
 
