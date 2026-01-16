@@ -10,6 +10,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SEGURANÇA
 # =========================
 import os
+import dj_database_url
 
 SECRET_KEY = os.environ.get(
     "SECRET_KEY",
@@ -92,14 +93,9 @@ WSGI_APPLICATION = 'sistema.wsgi.application'
 # BANCO DE DADOS
 # =========================
 DATABASES = {
-   'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'clinica_db',
-        'USER': 'manacas',
-        'PASSWORD': 'Mari@0709',
-        'HOST': '/cloudsql/clinica-estetica-484416:southamerica-west1:clinica-postgres',
-        'PORT': '5432',
-    }
+    "default": dj_database_url.config(
+        default=os.getenv("DATABASE_URL")
+    )
 }
 
 
