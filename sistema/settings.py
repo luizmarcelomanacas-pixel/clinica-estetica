@@ -92,9 +92,13 @@ WSGI_APPLICATION = 'sistema.wsgi.application'
 # BANCO DE DADOS
 # =========================
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+   'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'clinica_db',
+        'USER': 'manacas',
+        'PASSWORD': 'Mari@0709',
+        'HOST': '/cloudsql/clinica-estetica-484416:southamerica-west1:clinica-postgres',
+        'PORT': '5432',
     }
 }
 
@@ -142,3 +146,11 @@ STATICFILES_DIRS = []
 # DEFAULT PK
 # =========================
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+import os
+
+DATABASES['default']['HOST'] = os.getenv(
+    'DB_HOST',
+    DATABASES['default']['HOST']
+)
+
